@@ -3,6 +3,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: [
     'react-hot-loader/patch',
+    //'./app/wish.jsx',
     './app/index.jsx'
   ],
   module: {
@@ -10,10 +11,15 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['es2015','react','stage-2']
-        }
+        loader: 'babel-loader'
+      },
+      { test: /\.css$/,
+        include: /node_modules/,
+        loader: 'style-loader!css-loader' 
+      },
+      { test: /\.less$/, 
+        exclude: /node_modules/, 
+        loader: 'style-loader!css-loader!less-loader' 
       }
     ]
   },
