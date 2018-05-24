@@ -2,86 +2,144 @@ import React, { Component } from 'react';
 import TodoList from './TodoList';
 import AddTodoItem from './AddTodoItem';
 import {Card} from 'antd';
+import EOS from 'eosjs'
 
-export default class TodoBox extends React.Component{
+const EOS_CONFIG = {
+  contractName: "todo.user", // Contract name
+  contractSender: "todo.user", // User executing the contract (should be paired with private key)
+  clientConfig: {
+    keyProvider: '5JEnXfs3bKqzcUSYzP4wyG7ztiBsrWzNab12v6sa5ftQWuARhnE', // Your private key
+    httpEndpoint: 'http://127.0.0.1:8888' // EOS http endpoint
+  }
+}
+
+class TodoBox extends React.Component{
     constructor(props) {
         super(props)
         //初始任务列表
         this.state = {
-          data: [
-            
+          todos: [
           ],
-          finished: 0
+          finished: 0,
+          loading: false
         }
         this.addTask = this.addTask.bind(this);
         this.updateFinished = this.updateFinished.bind(this);
         this.deleteTask = this.deleteTask.bind(this);
+        //初始化EOS
+        this.eosClient = EOS.Localnet(EOS_CONFIG.clientConfig)
     }
-    generateGUID() {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-          var r = Math.random() * 16 | 0,
-            v = c == 'x' ? r : (r & 0x3 | 0x8)
-          return v.toString(16)
-        })
+    componentDidMount() {
+      this.loadTodos();
+      this.loadFinish();
+    }
+    loadTodos() {
+      this.eosClient.getTableRows('todos', 'todo.user', 'todo.user').then((data) => {
+        this.setState({ todos: data })
+      }).catch((e) => {
+        console.error(e);
+      })
+    }
+    loadFinish(){
+      var sum = 0;
+      let list = this.state.todos;
+      for (let item of list) {
+        if (item.completed === 1) {
+          sum++;
+        }
+      }
+      this.setState({
+        finished : sum
+      })
     }
     //添加新任务，在组件中以props的形式传递给子组件
     addTask(task) {
+      this.setState({loading: true})
       let newItem = {
-        id: this.generateGUID(),
+        id: (this.state.todos.length+1),
         task,
-        complete: "false"
+        completed: 0
       }
-      let list = this.state.data;
+      let list = this.state.todos;
       list = list.concat([newItem])
       this.setState({
-        data : list
+        todos : list
+      })
+      this.eosClient.contract(EOS_CONFIG.contractName).then((contract) => {
+        contract.create(
+          EOS_CONFIG.contractSender,
+          newItem.id,
+          task,
+          { authorization: [EOS_CONFIG.contractSender] }
+        ).then((res) => { this.setState({ loading: false }) })
+        .catch((err) => { this.setState({ loading: false }); console.log(err) })
       })
     }
     //更新完成的任务，在组件中以props的形式传递给子组件
     updateFinished(taskId) {
+        this.setState({loading: true})
         var sum = 0;
-        let list = this.state.data;
+        let list = this.state.todos;
         for (let item of list) {
           if (item.id === taskId) {
-            item.complete = item.complete === "true" ? "false" : "true"
+            item.completed = item.completed === 1 ? 0 : 1
           }
-          if (item.complete === "true") {
+          if (item.completed === 1) {
             sum++;
           }
         }
         this.setState({
-          data : list ,
+          todos : list ,
           finished : sum
+        })
+        this.eosClient.contract(EOS_CONFIG.contractName).then((contract) => {
+          contract.complete(
+            EOS_CONFIG.contractSender,
+            taskId,
+            { authorization: [EOS_CONFIG.contractSender] }
+          ).then((res) => { this.setState({ loading: false }) })
+          .catch((err) => { this.setState({ loading: false }); console.log(err) })
         })
     }
     //删除任务
     deleteTask(taskId) {
+        this.setState({loading: true})
         var sum = 0;
-        let list = this.state.data;
+        let list = this.state.todos;
         list = list.filter(task => task.id !== taskId)
         for (let item of list) {
-          if (item.complete === "true") {
+          if (item.completed === 1) {
             sum++;
           }
         }
         this.setState({
-          data : list ,
+          todos : list ,
           finished : sum
+        })
+        this.eosClient.contract(EOS_CONFIG.contractName).then((contract) => {
+          contract.destroy(
+            EOS_CONFIG.contractSender,
+            taskId,
+            { authorization: [EOS_CONFIG.contractSender] }
+          ).then((res) => { this.setState({ loading: false }) })
+          .catch((err) => { this.setState({ loading: false }); console.log(err) })
         })
     }
     render(){
         return (
                 <div style={{ background: '#ECECEC', padding: '30px' }}>
                   <Card title="任务便签" bordered={false} style={{ width: 500 }}>
-                      <TodoList data={this.state.data}
+                      <TodoList todos={this.state.todos}
                                 handleFinished={this.updateFinished} 
                                 handleDelete={this.deleteTask}/>
                       <AddTodoItem handleSave={this.addTask}/>
                       <div style={{ float:'right' }}>
-                        {this.state.finished}已完成&nbsp;/&nbsp;{this.state.data.length}总数
+                      {this.state.loading ? <small>(正在保存...)</small> : ""}{this.state.finished}已完成&nbsp;/&nbsp;{this.state.todos.length}总数
                       </div>
                     </Card>
                 </div>
         )
     }
 }
+
+export default TodoBox

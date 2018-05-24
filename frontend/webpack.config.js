@@ -3,7 +3,6 @@ const webpack = require('webpack');
 module.exports = {
   entry: [
     'react-hot-loader/patch',
-    //'./app/wish.jsx',
     './app/index.jsx'
   ],
   module: {

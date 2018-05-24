@@ -18,7 +18,7 @@ class TodoItem extends React.Component{
     render(){
         let task = this.props.task
         let itemChecked
-        if (this.props.complete === "true") {
+        if (this.props.completed === 1) {
             task = <del>{task}</del>
             itemChecked = true
         } else {
