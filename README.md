@@ -46,8 +46,8 @@
 
 > * [第三篇:发币教程](https://github.com/PeterHuZQ/EOS-Development/blob/master/%E5%8F%91%E4%B8%AA%5B%E5%A4%A7%E5%AE%9DSOD%E5%B8%81%5D.md)
 
-> * [第四篇:EOS智能合约第一课：发送母亲节祝福](https://github.com/PeterHuZQ/EOS-Dapp/blob/master/contract/docs/%E9%83%A8%E7%BD%B2%E5%90%88%E7%BA%A6%E6%89%8B%E5%86%8C.md)
+> * [第四篇:EOS智能合约第一课：发送母亲节祝福](https://github.com/PeterHuZQ/EOS-Dapp/blob/master/contract/docs/motherday%E5%90%88%E7%BA%A6%E6%89%8B%E5%86%8C.md)
 
-> * [第五篇:EOS智能合约第二课：任务便签](https://github.com/PeterHuZQ/EOS-Dapp/blob/master/contract/docs/%E9%83%A8%E7%BD%B2%E5%90%88%E7%BA%A6%E6%89%8B%E5%86%8C.md)
+> * [第五篇:EOS智能合约第二课：任务便签](https://github.com/PeterHuZQ/EOS-Dapp/blob/master/contract/docs/todo%E5%90%88%E7%BA%A6%E6%89%8B%E5%86%8C.md)
 
 未完待续，欢迎学习EOS智能合约的朋友加微信：hu350410796<br>
