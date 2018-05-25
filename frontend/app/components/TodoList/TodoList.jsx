@@ -9,7 +9,7 @@ class TodoList extends React.Component{
         var taskList=this.props.todos.map(listItem=>
             <TodoItem key={listItem.id}
                       taskId={listItem.id}
-                      task={listItem.task}
+                      task={listItem.description}
                       completed={listItem.completed}
                       handleFinished={this.props.handleFinished}
                       handleDelete={this.props.handleDelete}/>

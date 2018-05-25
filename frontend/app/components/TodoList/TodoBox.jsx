@@ -34,8 +34,8 @@ class TodoBox extends React.Component{
       this.loadFinish();
     }
     loadTodos() {
-      this.eosClient.getTableRows('todos', 'todo.user', 'todo.user').then((data) => {
-        this.setState({ todos: data })
+      this.eosClient.getTableRows(true, 'todo.user', 'todo.user','todos').then((data) => {
+        this.setState({ todos: data.rows })
       }).catch((e) => {
         console.error(e);
       })
