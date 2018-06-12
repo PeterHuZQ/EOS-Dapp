@@ -1,41 +1,39 @@
 # EOS-Dapp
 ---
-## 1 发送母亲节祝福
-### 1.1 示例
+##  1、三连棋游戏
+### 示例
+![](tictactoe.gif)
+
+说明：基于EOS区块链上的小游戏Dapp<br>
+  * 使用C++开发智能合约,参考contract文件下的docs里的`tic_tac_toe合约手册`
+  * 前端使用 React + EOS.js
+  * 部署在EOS Dawm4.0.0测试网络上
+
+##  2、发送母亲节祝福
+### 示例
 ![](motherday.gif)
 
-### 1.2 说明
-基于EOS区块链上的母亲节祝福Dapp<br>
-  * 使用C++开发智能合约（motherday.cpp）
+说明：基于EOS区块链上的母亲节祝福Dapp<br>
+  * 使用C++开发智能合约,参考contract文件下的docs里的`motherday合约手册`
   * 前端使用 React + EOS.js
   * 部署在EOS Dawm3.0.0测试网络上
 
-### 1.3 使用
-  本地安装使用<br>
-  环境:Nodejs、Webpack
-  * 下载至本地
-  * 进入frontend文件夹，执行`npm install` 安装依赖
-  * 部署合约，参考contract文件下的docs里的`motherday合约手册`
-  * 终端当前目录下npm start启动前端
-  * 浏览器localhost:8080端口即可查看
-
-## 2 任务便签
-### 2.1 示例
+##  3、任务便签
+### 示例
 ![](tasklist.gif)
 
-### 2.2 说明
-基于EOS区块链上实现CRUD操作<br>
-  * 使用C++开发智能合约（todo.cpp）
+说明：基于EOS区块链上实现CRUD操作<br>
+  * 使用C++开发智能合约,参考contract文件下的docs里的`todo合约手册`
   * 前端使用 React + EOS.js + Ant-Design +React-Router
   * 部署在EOS Dawm3.0.0测试网络上
 
-### 3.3 使用
+## 使用
   本地安装使用<br>
   环境:Nodejs、Webpack
   * 下载至本地
   * 进入frontend文件夹，执行`npm install` 安装依赖
-  * 部署合约，参考contract文件下的docs里的`todo合约手册`
-  * 终端当前目录下npm start启动前端
+  * 部署合约，参考contract文件下的docs里的合约手册
+  * 终端当前目录下`npm start`启动前端
   * 浏览器localhost:8080端口即可查看
 
 ## 其他
@@ -49,5 +47,7 @@
 > * [第四篇:EOS智能合约第一课：发送母亲节祝福](https://github.com/PeterHuZQ/EOS-Dapp/blob/master/contract/docs/motherday%E5%90%88%E7%BA%A6%E6%89%8B%E5%86%8C.md)
 
 > * [第五篇:EOS智能合约第二课：任务便签](https://github.com/PeterHuZQ/EOS-Dapp/blob/master/contract/docs/todo%E5%90%88%E7%BA%A6%E6%89%8B%E5%86%8C.md)
+
+> * [第六篇:EOS智能合约第三课：三连棋游戏](https://github.com/PeterHuZQ/EOS-Dapp/blob/master/contract/docs/todo%E5%90%88%E7%BA%A6%E6%89%8B%E5%86%8C.md)
 
 未完待续，欢迎学习EOS智能合约的朋友加微信：hu350410796<br>
