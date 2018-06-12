@@ -21,7 +21,10 @@ class App extends Component {
                 <div className="gutter-box"><Link to="/todo">Demo2</Link></div>
               </Col>
               <Col className="gutter-row" span={6}>
-                <div className="gutter-box"><Link to="/home">Demo3</Link></div>
+                <div className="gutter-box"><Link to="/tictactoe">Demo3</Link></div>
+              </Col>
+              <Col className="gutter-row" span={6}>
+                <div className="gutter-box"><Link to="/home">Demo4</Link></div>
               </Col>
             </Row>
           </div>
