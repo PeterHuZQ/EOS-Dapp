@@ -48,6 +48,6 @@
 
 > * [第五篇:EOS智能合约第二课：任务便签](https://github.com/PeterHuZQ/EOS-Dapp/blob/master/contract/docs/todo%E5%90%88%E7%BA%A6%E6%89%8B%E5%86%8C.md)
 
-> * [第六篇:EOS智能合约第三课：三连棋游戏](https://github.com/PeterHuZQ/EOS-Dapp/blob/master/contract/docs/todo%E5%90%88%E7%BA%A6%E6%89%8B%E5%86%8C.md)
+> * [第六篇:EOS智能合约第三课：三连棋游戏](https://github.com/PeterHuZQ/EOS-Dapp/blob/master/contract/docs/tic_tac_toe%E5%90%88%E7%BA%A6%E6%89%8B%E5%86%8C.md)
 
 未完待续，欢迎学习EOS智能合约的朋友加微信：hu350410796<br>
